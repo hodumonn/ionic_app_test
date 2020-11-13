@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openNewTodo()">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>To Do List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item-sliding *ngFor="let todo of todos">
+      <ion-item
+        (click)="openTodo(todo.id)">
+        <!-- ion-label로 묶어야 블럭태그가 먹혔음,, -->
+        <ion-label>
+          <h2>{{todo.title}}</h2>
+          <p>{{todo.description}}</p>
+        </ion-label>
+        <div item-end *ngIf="todo.complete">
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </div>
+      </ion-item>
+      <ion-item-options>
+        <ion-button color="danger" (click)="deleteTodo(todo.id)">
+          <ion-icon name="trash"></ion-icon>삭제
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
